@@ -18,10 +18,20 @@ class UserController extends AbstractController
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
-        return $this->render('user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('user/index.html.twig', [
+                'users' => $userRepository->findAll(),
+            ]);}
+        else{
+                return $this->render('user/front.html.twig', [
+                    'users' => $userRepository->findAll(),
+                ]);
+            }
+         }
+
+       
+    
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher,  EntityManagerInterface $entityManager): Response

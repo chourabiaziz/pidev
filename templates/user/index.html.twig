@@ -4,6 +4,8 @@
 {% endblock %}
 
 {% block body %}
+
+
 <h1>List of users</h1>
 <div class="col-12">
     <div class="card recent-sales overflow-auto">
@@ -28,6 +30,8 @@
                 </thead>
                 <tbody>
                     {% for user in users %}
+                    {% if 'ROLE_DOCTOR' in user.roles %}
+
                     <tr>
                         <td>{{ user.id }}</td>
                         <td>{{ user.name }}</td>
@@ -44,6 +48,7 @@
                             <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
                         </td>
                     </tr>
+                    {% endif %}
                     {% else %}
                     <tr>
                         <td colspan="19">no records found</td>
