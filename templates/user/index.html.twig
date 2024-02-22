@@ -1,0 +1,237 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block body %}
+<h1>List of users</h1>
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+        <div class="card-body">
+            <h5 class="card-title">Doctors
+                <span></span>
+            </h5>
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Prename</th>
+                        <th scope="col">email</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">Speciality</th>
+                        <th scope="col">Actions</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.prename }}</td>
+                        <td>{{ user.email }}</td>
+
+
+                        <td>{{ user.phone }}</td>
+
+                        <td>{{ user.speciality }}</td>
+
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                            <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="19">no records found</td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+            <a class="btn btn-success" href="{{ path('app_user_new_doctor') }}">Create new</a>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+        <div class="card-body">
+            <h5 class="card-title">Patient
+                <span></span>
+            </h5>
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Prename</th>
+                        <th scope="col">email</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">Speciality</th>
+                        <th scope="col">Actions</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    {% if 'ROLE_PATIENT' in user.roles %}
+
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.prename }}</td>
+                        <td>{{ user.email }}</td>
+
+
+                        <td>{{ user.phone }}</td>
+
+                        <td>{{ user.speciality }}</td>
+
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                            <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                        </td>
+                    </tr> {% endif %}
+
+                    {% else %}
+                    <tr>
+                        <td colspan="19">no records found</td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+            <a class="btn btn-success" href="{{ path('app_user_new') }}">Create new</a>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+        <div class="card-body">
+            <h5 class="card-title">Emergency
+                <span></span>
+            </h5>
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Prename</th>
+                        <th scope="col">email</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">Speciality</th>
+                        <th scope="col">Actions</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for user in users %}
+                    {% if 'ROLE_EMERGENCY' in user.roles %}
+
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.prename }}</td>
+                        <td>{{ user.email }}</td>
+
+
+                        <td>{{ user.phone }}</td>
+
+                        <td>{{ user.speciality }}</td>
+
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                            <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% else %}
+                    <tr>
+                        <td colspan="19">no records found</td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+            <a class="btn btn-success" href="{{ path('app_user_new_emergency') }}">Create new </a>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="col-12">
+    <div class="card recent-sales overflow-auto">
+
+        <div class="card-body">
+            <h5 class="card-title">Membre famille
+                <span></span>
+            </h5>
+            <table class="table table-borderless datatable">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Prename</th>
+                        <th scope="col">email</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">Speciality</th>
+                        <th scope="col">Actions</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    {% if 'ROLE_MEMBER' in user.roles %}
+
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.prename }}</td>
+                        <td>{{ user.email }}</td>
+
+
+                        <td>{{ user.phone }}</td>
+
+                        <td>{{ user.speciality }}</td>
+
+                        <td>
+                            <a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                            <a class="btn btn-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% else %}
+                    <tr>
+                        <td colspan="19">no records found</td>
+                    </tr>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+            <a class="btn btn-success" href="{{ path('app_user_new_member') }}">Create new</a>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
